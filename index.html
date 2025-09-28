@@ -31,7 +31,6 @@
     <!-- theme js file -->
     <script defer src="./src/js/theme.js"></script>
     <!-- main js file -->
-    <script defer type="module" src="./src/js/app.js"></script>
   </head>
   <body>
     <!-- sidebar section -->
@@ -157,6 +156,52 @@
           </div>
         </div>
       </div>
+      <button class="fab">
+        <span class="material-symbols-rounded" aria-hidden="true">add</span>
+        <!-- <span class="text text-label-large">Newnote</span> -->
+      </button>
+      <!-- modal -->
+      <!-- <dialog class="modal">
+        <button class="icon-btn large">
+          <span class="material-symbols-rounded" aria-hidden="true">close</span>
+        </button>
+        <input
+          type="text"
+          name=""
+          placeholder="Untitled"
+          id=""
+          data-note-field
+          class="modal-title text-title-medium" />
+        <textarea
+          name=""
+          id=""
+          placeholder="Take a note..."
+          class="modal-text text-body-large custom-scrollbar"
+          data-note-field></textarea>
+        <div class="modal-footer">
+          <span class="text text-label-large">20 min ago</span>
+          <button class="btn text" data-submit-btn>
+            <span class="text text-label-large">Save</span>
+          </button>
+        </div>
+      </dialog> -->
+      <dialog class="modal delete-modal">
+        <button class="icon-btn large">
+          <span class="material-symbols-rounded" aria-hidden="true">close</span>
+        </button>
+        <h3 class="modal-title text-title-medium">
+          Are you sure you want to delete <strong> "Note title" </strong> ?
+        </h3>
+        <div class="modal-footer">
+          <button class="btn text">
+            <span class="text text-label-large">Cancel</span>
+          </button>
+          <button class="btn text">
+            <span class="text text-label-large delete-btn">Delete</span>
+          </button>
+        </div>
+      </dialog>
     </main>
+    <script type="module" src="./src/js/app.js"></script>
   </body>
 </html>
