@@ -442,7 +442,54 @@ body {
 /**
  * Card
  */
+.card {
+  background-color: var(--surface);
+  padding: var(--spacing-4);
+  border: 1px solid var(--outline-variant);
+  border-radius: var(--radius-large);
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+}
+.card:where(:hover, :focus-within) {
+  border-color: var(--outline);
+  background-color: var(--surface-container-low);
+}
 
+.card .card-title {
+  color: var(--on-surface);
+}
+.card .card-text {
+  color: var(--on-surface-variant);
+  margin-block: var(--spacing-4);
+  text-wrap: balance;
+  -webkit-line-clamp: 4;
+  line-clamp: 4;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+.card .wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-block-start: auto;
+}
+.card .card-time {
+  color: var(--on-surface-variant);
+}
+
+.card .icon-btn {
+  opacity: 0;
+  visibility: hidden;
+  transition: var(--tr-duration-short) var(--tr-easing-linear);
+}
+
+.card:where(:hover, :focus-visible) .icon-btn {
+  opacity: 1;
+  visibility: visible;
+}
 /**
  * Modal
  */
@@ -590,6 +637,13 @@ body {
 }
 .main > .title {
   margin-block: var(--spacing-3);
+}
+.note-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  align-content: flex-start;
+  align-items: stretch;
+  gap: var(--spacing-2);
 }
 /*-----------------------------------*\
   #MEDIA QUERIES
