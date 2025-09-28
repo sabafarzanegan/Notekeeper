@@ -1,5 +1,7 @@
-/**
- * @copyright codewithsadee 2023
- */
+"use strict";
 
-'use strict';
+const addEventOnElements = (elements, eventType, callback) => {
+  elements.forEach((element) => element.addEventListener(eventType, callback));
+};
+
+export { addEventOnElements };
