@@ -107,7 +107,37 @@
         </span>
       </div>
     </header>
-    <!-- sidebar overlay -->
+    <!-- overlay -->
     <div class="overlay" data-sidebar-overlay data-sidebar-toggler></div>
+    <!-- main -->
+    <main class="main">
+      <header class="header">
+        <div class="wrapper">
+          <p class="title text-title-large" data-greeting>Good Morning</p>
+          <span class="text text-body-medium">Sat, Sep 22 2023</span>
+        </div>
+        <button
+          class="theme-btn icon-btn large"
+          aria-label="Toggle theme"
+          data-tooltip="toggle theme"
+          data-theme-btn>
+          <span class="material-symbols-rounded dark-icon" aria-hidden="true"
+            >dark_mode</span
+          >
+          <span class="material-symbols-rounded light-icon" aria-hidden="true"
+            >light_mode</span
+          >
+        </button>
+        <button
+          class="menu-btn icon-btn large"
+          aria-label="Open menu"
+          data-sidebar-toggler>
+          <span class="material-symbols-rounded" aria-hidden="true">menu</span>
+        </button>
+      </header>
+      <h2 class="title text-title-medium" data-note-panel-title>My Notebook</h2>
+      <!-- note list -->
+      <div class="note-list" data-note-panel></div>
+    </main>
   </body>
 </html>
