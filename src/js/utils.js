@@ -21,4 +21,16 @@ const greetingMsg = (currentHour) => {
   return `Good ${greeting}`;
 };
 
-export { addEventOnElements, greetingMsg };
+let lastActiveNavItem;
+const activeNooteBook = function () {
+  lastActiveNavItem?.classList.remove("active");
+  this.classList.add("active");
+  lastActiveNavItem = this;
+};
+
+const makeEleEditable = (elenemt) => {
+  elenemt.setAttribute("contenteditable", true);
+  elenemt.focus();
+};
+
+export { addEventOnElements, greetingMsg, activeNooteBook, makeEleEditable };
