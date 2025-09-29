@@ -4,6 +4,8 @@
 
 "use strict";
 
+import { findNoteBook } from "./utils.js";
+
 let noteKeeperDB = {};
 
 const initeDB = () => {
@@ -45,6 +47,14 @@ export const db = {
     notebook() {
       readDb();
       return noteKeeperDB.notebooks;
+    },
+  },
+  update: {
+    notebook(name, id) {
+      readDb();
+      const findNotebook = findNoteBook(noteKeeperDB, id);
+      findNotebook.name = name;
+      writesDb();
     },
   },
 };

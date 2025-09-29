@@ -32,5 +32,14 @@ const makeEleEditable = (elenemt) => {
   elenemt.setAttribute("contenteditable", true);
   elenemt.focus();
 };
+function findNoteBook(noteKeeperDB, id) {
+  return noteKeeperDB.notebooks.find((ele) => ele.id === id);
+}
 
-export { addEventOnElements, greetingMsg, activeNooteBook, makeEleEditable };
+export {
+  addEventOnElements,
+  greetingMsg,
+  activeNooteBook,
+  makeEleEditable,
+  findNoteBook,
+};

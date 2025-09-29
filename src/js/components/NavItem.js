@@ -4,8 +4,11 @@
 
 "use strict";
 
+import { db } from "../db.js";
+import { activeNooteBook, makeEleEditable } from "../utils.js";
+
 export const navItem = function (name, id) {
-  console.log("navItemname", name);
+  const notePanelTitle = document.querySelector("[data-note-panel-title]");
 
   const navItem = document.createElement("div");
   navItem.classList.add("nav-item");
@@ -36,5 +39,22 @@ export const navItem = function (name, id) {
           </button>
           <div class="state-layer"></div>
   `;
+  navItem.addEventListener("click", function () {
+    notePanelTitle.textContent = name;
+    activeNooteBook.call(this);
+  });
+
+  const navItemEditBtn = navItem.querySelector("[data-edit-btn]");
+  const navItemField = navItem.querySelector("[data-notebook-field]");
+  navItemEditBtn.addEventListener(
+    "click",
+    makeEleEditable.bind(null, navItemField)
+  );
+  navItemField.addEventListener("keydown", function (e) {
+    if (e.key === "Enter") {
+      this.removeAttribute("contenteditable");
+      const updatednavitem = db.update.notebook(this.textContent, id);
+    }
+  });
   return navItem;
 };
