@@ -12,6 +12,7 @@ const initeDB = () => {
   const db = localStorage.getItem("noteKeeperDB");
   if (db) {
     noteKeeperDB = JSON.parse(db);
+    console.log(noteKeeperDB);
   } else {
     noteKeeperDB.notebooks = [];
     localStorage.setItem("noteKeeperDB", JSON.stringify(noteKeeperDB));
@@ -46,6 +47,8 @@ export const db = {
   get: {
     notebook() {
       readDb();
+      console.log(noteKeeperDB.notebooks);
+
       return noteKeeperDB.notebooks;
     },
   },
@@ -54,6 +57,20 @@ export const db = {
       readDb();
       const findNotebook = findNoteBook(noteKeeperDB, id);
       findNotebook.name = name;
+      writesDb();
+      return findNotebook;
+    },
+  },
+  delete: {
+    notebook(notebookId) {
+      readDb();
+
+      const findIndex = noteKeeperDB.notebooks.find(
+        (item) => item.id === notebookId
+      );
+
+      noteKeeperDB.notebooks.splice(findIndex, 1);
+
       writesDb();
     },
   },

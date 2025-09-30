@@ -12,6 +12,7 @@ import {
 } from "./utils.js";
 import { db } from "./db.js";
 import { client } from "./client.js";
+import { navItem } from "./components/NavItem.js";
 // toggle sidebar
 
 const $sidebar = document.querySelector("[data-sidebar]");
@@ -67,6 +68,7 @@ function showNotebookField() {
   `;
   // const $navItem = navItem();
   sidebar_list.appendChild($navItem);
+
   const navItemField = $navItem.querySelector("[data-notebook-field]");
   activeNooteBook.call($navItem);
   makeEleEditable(navItemField);
@@ -85,6 +87,7 @@ addNotebookBtn.addEventListener("click", showNotebookField);
 
 function renderExistingNotebook() {
   const notebookList = db.get.notebook();
+
   client.notebook.read(notebookList);
 }
 renderExistingNotebook();

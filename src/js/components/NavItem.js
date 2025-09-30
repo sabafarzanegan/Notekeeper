@@ -4,11 +4,13 @@
 
 "use strict";
 
+import { client } from "../client.js";
 import { db } from "../db.js";
 import { activeNooteBook, makeEleEditable } from "../utils.js";
 
 export const navItem = function (name, id) {
   const notePanelTitle = document.querySelector("[data-note-panel-title]");
+  const deletemodal = document.querySelector("[data-delete-modal]");
 
   const navItem = document.createElement("div");
   navItem.classList.add("nav-item");
@@ -53,8 +55,33 @@ export const navItem = function (name, id) {
   navItemField.addEventListener("keydown", function (e) {
     if (e.key === "Enter") {
       this.removeAttribute("contenteditable");
+      // update functionallity
       const updatednavitem = db.update.notebook(this.textContent, id);
+      client.notebook.update(id, updatednavitem);
     }
+  });
+  // delete functionality
+
+  const navItemDeleteBtn = navItem.querySelector("[data-delete-btn]");
+
+  navItemDeleteBtn.addEventListener("click", () => {
+    deletemodal.showModal();
+    const modal_delete_title = deletemodal.querySelector("#delete-modal-title");
+    modal_delete_title.textContent = name;
+    // cancel handler
+    const cancelBtns = deletemodal.querySelectorAll(".cancel-modal");
+    cancelBtns.forEach((btn) => {
+      btn.addEventListener("click", () => {
+        deletemodal.close();
+      });
+    });
+    // delete handler
+    const deleteBtn = deletemodal.querySelector("#delete-modal-btn");
+    deleteBtn.addEventListener("click", () => {
+      db.delete.notebook(id);
+      client.notebook.delete(id);
+      deletemodal.close();
+    });
   });
   return navItem;
 };

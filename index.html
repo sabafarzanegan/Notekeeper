@@ -164,7 +164,7 @@
         <!-- <span class="text text-label-large">Newnote</span> -->
       </button>
       <!-- modal -->
-      <!-- <dialog class="modal">
+      <dialog class="modal" data-submit-modal>
         <button class="icon-btn large">
           <span class="material-symbols-rounded" aria-hidden="true">close</span>
         </button>
@@ -187,19 +187,20 @@
             <span class="text text-label-large">Save</span>
           </button>
         </div>
-      </dialog> -->
-      <dialog class="modal delete-modal">
-        <button class="icon-btn large">
+      </dialog>
+      <dialog class="modal delete-modal" data-delete-modal>
+        <button class="icon-btn large cancel-modal">
           <span class="material-symbols-rounded" aria-hidden="true">close</span>
         </button>
         <h3 class="modal-title text-title-medium">
-          Are you sure you want to delete <strong> "Note title" </strong> ?
+          Are you sure you want to delete
+          <strong id="delete-modal-title"> "Note title" </strong> ?
         </h3>
         <div class="modal-footer">
-          <button class="btn text">
+          <button class="btn text cancel-modal">
             <span class="text text-label-large">Cancel</span>
           </button>
-          <button class="btn text">
+          <button class="btn text" id="delete-modal-btn">
             <span class="text text-label-large delete-btn">Delete</span>
           </button>
         </div>
