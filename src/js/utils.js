@@ -3,6 +3,7 @@
 const addEventOnElements = (elements, eventType, callback) => {
   elements.forEach((element) => element.addEventListener(eventType, callback));
 };
+const notePanelTitle = document.querySelector("[data-note-panel-title]");
 
 const greetingMsg = (currentHour) => {
   const greeting =

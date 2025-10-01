@@ -1,7 +1,3 @@
-/**
- * @copyright codewithsadee 2023
- */
-
 "use strict";
 
 import { client } from "../client.js";
@@ -11,6 +7,7 @@ import { activeNooteBook, makeEleEditable } from "../utils.js";
 export const navItem = function (name, id) {
   const notePanelTitle = document.querySelector("[data-note-panel-title]");
   const deletemodal = document.querySelector("[data-delete-modal]");
+  const noteCreateBtn = document.querySelectorAll("[data-note-create-btn]");
 
   const navItem = document.createElement("div");
   navItem.classList.add("nav-item");
@@ -44,6 +41,8 @@ export const navItem = function (name, id) {
   navItem.addEventListener("click", function () {
     notePanelTitle.textContent = name;
     activeNooteBook.call(this);
+    const noteLists = db.notes.get(this.dataset.notebook);
+    client.notes.read(noteLists);
   });
 
   const navItemEditBtn = navItem.querySelector("[data-edit-btn]");
@@ -80,6 +79,12 @@ export const navItem = function (name, id) {
     deleteBtn.addEventListener("click", () => {
       db.delete.notebook(id);
       client.notebook.delete(id);
+      const database = db.get.notebook();
+
+      if (database.length == 0) {
+        noteCreateBtn.forEach((item) => item.classList.add("none"));
+        window.location.reload();
+      }
       deletemodal.close();
     });
   });

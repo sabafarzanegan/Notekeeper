@@ -13,8 +13,6 @@ const systemThemeIsDark = window.matchMedia(
 ).matches;
 
 const initialTheme = storedTheme ?? (systemThemeIsDark ? "dark" : "light");
-console.log(systemThemeIsDark);
-console.log(initialTheme);
 
 // set data-theme to html tag
 document.documentElement.setAttribute("data-theme", initialTheme);

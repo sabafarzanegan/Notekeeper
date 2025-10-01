@@ -74,31 +74,7 @@
       </div>
       <nav class="nav custom-scrollbar" data-sidebar-list>
         <!-- <div class="nav-item">
-          <span class="text text-label-small" data-notebook-field>
-            My Notebook
-          </span>
-          <button
-            class="icon-btn small"
-            aria-label="edit notebook"
-            data-tooltip="edit notebook"
-            data-edit-btn>
-            <span class="material-symbols-rounded" aria-hidden="true"
-              >edit</span
-            >
-            <div class="state-layer"></div>
-          </button>
-          <button
-            class="icon-btn small"
-            aria-label="delete notebook"
-            data-tooltip="delete notebook"
-            data-delete-btn>
-            <span class="material-symbols-rounded" aria-hidden="true"
-              >delete</span
-            >
-            <div class="state-layer"></div>
-          </button>
-          <div class="state-layer"></div>
-        </div> -->
+         -->
       </nav>
       <div class="cp-info">
         <span class="text-label-large"
@@ -137,35 +113,16 @@
           <span class="material-symbols-rounded" aria-hidden="true">menu</span>
         </button>
       </header>
-      <h2 class="title text-title-medium" data-note-panel-title>My Notebook</h2>
+      <h2 class="title text-title-medium" data-note-panel-title></h2>
       <!-- note list -->
-      <div class="note-list" data-note-panel>
-        <div class="card">
-          <h3 class="card-title text-title-medium">Note title</h3>
-          <p class="card-text text-body-large">
-            Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-            Repellendus, eum.
-          </p>
-          <div class="wrapper">
-            <span class="card-time text-label-large">20 min ago </span>
-            <button
-              class="icon-btn large"
-              aria-label="Delete note"
-              data-tooltip="delete note">
-              <span class="material-symbols-rounded" aria-hidden="true"
-                >delete</span
-              >
-            </button>
-          </div>
-        </div>
-      </div>
-      <button class="fab">
+      <div class="note-list" data-note-panel></div>
+      <button class="fab" data-note-create-btn>
         <span class="material-symbols-rounded" aria-hidden="true">add</span>
         <!-- <span class="text text-label-large">Newnote</span> -->
       </button>
       <!-- modal -->
       <dialog class="modal" data-submit-modal>
-        <button class="icon-btn large">
+        <button class="icon-btn large" data-cancel-submit-modal>
           <span class="material-symbols-rounded" aria-hidden="true">close</span>
         </button>
         <input
@@ -178,11 +135,12 @@
         <textarea
           name=""
           id=""
+          rows="3"
+          cols="2"
           placeholder="Take a note..."
           class="modal-text text-body-large custom-scrollbar"
-          data-note-field></textarea>
+          data-note-textarea></textarea>
         <div class="modal-footer">
-          <span class="text text-label-large">20 min ago</span>
           <button class="btn text" data-submit-btn>
             <span class="text text-label-large">Save</span>
           </button>
