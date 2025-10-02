@@ -59,15 +59,18 @@ export const db = {
     notebook(notebookId) {
       readDb();
 
-      const findIndex = noteKeeperDB.notebooks.find(
+      const index = noteKeeperDB.notebooks.findIndex(
         (item) => item.id === notebookId
       );
 
-      noteKeeperDB.notebooks.splice(findIndex, 1);
+      if (index !== -1) {
+        noteKeeperDB.notebooks.splice(index, 1);
+      }
 
       writesDb();
     },
   },
+
   notes: {
     create(noteTitlePanel, noteTitle, textNote) {
       console.log(noteTitlePanel);
@@ -83,7 +86,7 @@ export const db = {
       );
       console.log(findNotes);
 
-      findNotes.notes.push(newNote);
+      findNotes.notes = [...findNotes.notes, newNote];
       writesDb();
       return newNote;
     },
@@ -98,16 +101,20 @@ export const db = {
     },
     delete(activeNavItem, noteName) {
       readDb();
+
       const findNotebooks = noteKeeperDB.notebooks.find(
         (item) => item.id === activeNavItem
       );
-      const findnote = findNotebooks.notes.find(
+
+      if (!findNotebooks) return;
+
+      const noteIndex = findNotebooks.notes.findIndex(
         (item) => item.title === noteName
       );
-      console.log(findNotebooks);
-      console.log(findnote);
 
-      findNotebooks.notes.splice(findnote, 1);
+      if (noteIndex !== -1) {
+        findNotebooks.notes.splice(noteIndex, 1);
+      }
 
       writesDb();
       return findNotebooks.notes;

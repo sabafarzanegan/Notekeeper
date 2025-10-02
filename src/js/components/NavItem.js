@@ -63,30 +63,36 @@ export const navItem = function (name, id) {
 
   const navItemDeleteBtn = navItem.querySelector("[data-delete-btn]");
 
-  navItemDeleteBtn.addEventListener("click", () => {
-    deletemodal.showModal();
-    const modal_delete_title = deletemodal.querySelector("#delete-modal-title");
-    modal_delete_title.textContent = name;
-    // cancel handler
-    const cancelBtns = deletemodal.querySelectorAll(".cancel-modal");
-    cancelBtns.forEach((btn) => {
-      btn.addEventListener("click", () => {
+  navItemDeleteBtn.addEventListener(
+    "click",
+    () => {
+      deletemodal.showModal();
+      const modal_delete_title = deletemodal.querySelector(
+        "#delete-modal-title"
+      );
+      modal_delete_title.textContent = name;
+      // cancel handler
+      const cancelBtns = deletemodal.querySelectorAll(".cancel-modal");
+      cancelBtns.forEach((btn) => {
+        btn.addEventListener("click", () => {
+          deletemodal.close();
+        });
+      });
+      // delete handler
+      const deleteBtn = deletemodal.querySelector("#delete-modal-btn");
+      deleteBtn.addEventListener("click", () => {
+        db.delete.notebook(id);
+        client.notebook.delete(id);
+        const database = db.get.notebook();
+
+        if (database.length == 0) {
+          noteCreateBtn.forEach((item) => item.classList.add("none"));
+          window.location.reload();
+        }
         deletemodal.close();
       });
-    });
-    // delete handler
-    const deleteBtn = deletemodal.querySelector("#delete-modal-btn");
-    deleteBtn.addEventListener("click", () => {
-      db.delete.notebook(id);
-      client.notebook.delete(id);
-      const database = db.get.notebook();
-
-      if (database.length == 0) {
-        noteCreateBtn.forEach((item) => item.classList.add("none"));
-        window.location.reload();
-      }
-      deletemodal.close();
-    });
-  });
+    },
+    { once: true }
+  );
   return navItem;
 };

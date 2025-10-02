@@ -126,19 +126,25 @@ noteCreateBtn?.forEach((btn) => {
     });
 
     const modalSubmitBtn = submitmodal.querySelector("[data-submit-btn]");
-    modalSubmitBtn.addEventListener("click", function () {
-      const notePanelTitle = document.querySelector("[data-note-panel-title]");
-      const newNote = db.notes.create(
-        notePanelTitle.innerText,
-        newTitleModal,
-        newTextAreaModal
-      );
-      client.notes.create(newNote.title, newNote.text);
+    modalSubmitBtn.addEventListener(
+      "click",
+      function () {
+        const notePanelTitle = document.querySelector(
+          "[data-note-panel-title]"
+        );
+        const newNote = db.notes.create(
+          notePanelTitle.innerText,
+          newTitleModal,
+          newTextAreaModal
+        );
+        client.notes.create(newNote.title, newNote.text);
 
-      submitmodal.close();
-      textModal.value = "";
-      textAreaModal.value = "";
-    });
+        submitmodal.close();
+        textModal.value = "";
+        textAreaModal.value = "";
+      },
+      { once: true }
+    );
   });
 });
 
